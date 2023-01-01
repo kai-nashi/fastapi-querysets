@@ -20,7 +20,14 @@ class DataclassProtocol(Protocol):
     __post_init__: Optional[Callable]
 
 
-class FilterMixin:
+class BaseFilterMixin:
+    def _get_model_filters(self, request: Request, filters: DataclassProtocol) -> Dict[str, Any]:
+        fields_map = {field.default.alias or field.name: field.name for field in dataclasses.fields(filters)}
+        _fields = set(request.query_params) & set(fields_map)
+        return {fields_map[field]: getattr(filters, fields_map[field]) for field in _fields}
+
+
+class FilterNegationMixin(BaseFilterMixin):
     filter_class: DataclassProtocol
 
     @property
@@ -36,23 +43,27 @@ class FilterMixin:
 
         return dataclasses.make_dataclass(f"{self.filter_class.__name__}Negation", fields=fields, frozen=True)
 
-    def _get_model_filters(self, request: Request, filters: DataclassProtocol) -> Dict[str, Any]:
-        fields_map = {field.default.alias or field.name: field.name for field in dataclasses.fields(filters)}
-        _fields = set(request.query_params) & set(fields_map)
-        return {fields_map[field]: getattr(filters, fields_map[field]) for field in _fields}
-
     def get_request_queryset(
         self,
         request: Request,
         exclude: DataclassProtocol = DependsMethod("exclude_class"),
+        queryset: QuerySet = DependsMethod("get_request_queryset", from_super=True),
+    ) -> QuerySet:
+        if model_exclude := self._get_model_filters(request, exclude):
+            queryset = queryset.exclude(**model_exclude)
+        return queryset
+
+
+class FilterMixin(BaseFilterMixin):
+    filter_class: DataclassProtocol
+
+    def get_request_queryset(
+        self,
+        request: Request,
         filters: DataclassProtocol = DependsMethod("filter_class"),
         queryset: QuerySet = DependsMethod("get_request_queryset", from_super=True),
     ) -> QuerySet:
 
         if model_filters := self._get_model_filters(request, filters):
             queryset = queryset.filter(**model_filters)
-
-        if model_exclude := self._get_model_filters(request, exclude):
-            queryset = queryset.exclude(**model_exclude)
-
         return queryset
