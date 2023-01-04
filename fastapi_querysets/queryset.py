@@ -21,7 +21,7 @@ class RouterQuerySet(DependsMethodBinder, params.Depends):
         self.dependency = self.get_request_queryset
         self.instance = Depends(self.get_request_instance)
 
-    async def get_queryset(self):
+    def get_queryset(self):
         return self.model.all()
 
     async def get_request_queryset(
