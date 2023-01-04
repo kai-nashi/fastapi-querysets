@@ -6,7 +6,7 @@ from tortoise.queryset import QuerySet
 
 from fastapi_querysets.mixins.ordering import OrderingMixin
 from fastapi_querysets.queryset import RouterQuerySet
-from tests.app_models.pydantic import ProjectModelOut
+from tests.app_models.pydantic import TaskModelOut
 from tests.app_models.tortoise_orm import Task
 
 
@@ -31,7 +31,7 @@ class TasksRouterQuerySet(OrderingMixin, RouterQuerySet):
 
 @app.get("/")
 async def app_test(queryset: QuerySet[Task] = TasksRouterQuerySet()) -> dict:
-    return await ProjectModelOut.from_queryset(queryset)
+    return await TaskModelOut.from_queryset(queryset)
 
 
 client = AsyncClient(app=app, base_url="http://test")
@@ -39,7 +39,7 @@ client = AsyncClient(app=app, base_url="http://test")
 
 @pytest.mark.usefixtures("db_fill")
 async def test_ordering_mixin__no_ordering_query__queryset_not_ordered(mocker):
-    spy_from_queryset = mocker.spy(ProjectModelOut, "from_queryset")
+    spy_from_queryset = mocker.spy(TaskModelOut, "from_queryset")
 
     tasks_ids = await Task.all().values_list("id", flat=True)
     assert tasks_ids
