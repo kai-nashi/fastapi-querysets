@@ -38,10 +38,10 @@ client = AsyncClient(app=app, base_url="http://test")
 
 
 @pytest.mark.usefixtures("db_fill")
-async def test_ordering_mixin__no_ordering_query__queryset_not_ordered(mocker):
+async def test_ordering_mixin__no_ordering_query__queryset_ordering_default(mocker):
     spy_from_queryset = mocker.spy(TaskModelOut, "from_queryset")
 
-    tasks_ids = await Task.all().values_list("id", flat=True)
+    tasks_ids = await Task.all().order_by("id").values_list("id", flat=True)
     assert tasks_ids
 
     response = await client.get("/")
