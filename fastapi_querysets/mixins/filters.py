@@ -28,10 +28,12 @@ class BaseFilterMixin:
 
 
 class FilterNegationMixin(BaseFilterMixin):
+    # todo: allow to configure exclude_class directly
     filter_class: DataclassProtocol
 
     @property
     def exclude_class(self) -> type:
+        # todo: dedicate method to create NegationClass from dataclass
         fields: List[Tuple[str, type, dataclasses.Field]] = []
         for field in dataclasses.fields(self.filter_class):
             _field = copy.copy(field)
