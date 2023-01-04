@@ -5,10 +5,10 @@ description = ""
 authors = ["Nikakto <black-z@bk.ru>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-fastapi = "^0.70.0"
+python = ">=3.8,<4.0"
+fastapi = ">=0.70.0"
 fastapi-depends-ext = { git = "https://github.com/Nikakto/fastapi-depends-ext", branch = "main" }
-tortoise-orm = "^0.18.1"
+tortoise-orm = ">=0.18.1"
 
 [tool.poetry.dev-dependencies]
 httpx = "^0.23.1"
