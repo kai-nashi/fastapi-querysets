@@ -24,11 +24,9 @@ class OrderingMixin:
         if not ordering:
             return queryset
 
+        # todo: allow to patch method typing to remove custom error
         for index, field in enumerate(ordering):
-            field_name = field.replace("-", "")
-
-            # todo: allow to patch method typing to remove custom error
-            if field_name not in self.ordering_fields:
+            if field.replace("-", "") not in self.ordering_fields:
                 raise create_validation_exception(
                     status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
                     loc=["query", "ordering[]", index],
@@ -36,9 +34,5 @@ class OrderingMixin:
                     _type="value_error",
                 )
 
-            if method := getattr(self, f"order_by_{field_name}", None):
-                queryset = method(queryset, desc=field.startswith("-"))
-            else:
-                queryset = queryset.order_by(*ordering)
-
+        queryset = queryset.order_by(*ordering)
         return queryset

@@ -38,8 +38,10 @@ async def app_test(queryset: QuerySet[Worker] = WorkersRouterQuerySet()) -> dict
 client = AsyncClient(app=app, base_url="http://test")
 
 
+@pytest.mark.usefixtures("db_fill")
 async def test_filter_mixin__params_empty__not_filtered(db_create_workers):
     workers_ids = await Worker.all().order_by("id").values_list("id", flat=True)
+    assert workers_ids
 
     response = await client.get("/")
 
@@ -67,6 +69,7 @@ async def test_filter_mixin__params_filter__filter_with_params(model_filters, pa
     assert sorted([worker["id"] for worker in response.json()]) == workers_ids
 
 
+@pytest.mark.usefixtures("db_fill")
 async def test_filter_mixin__param_not_in_model__ignored():
     workers_ids = await Worker.all().order_by("id").values_list("id", flat=True)
     assert workers_ids
@@ -84,6 +87,7 @@ async def test_filter_mixin__param_not_in_model__ignored():
         {"id": "abc"},
     ],
 )
+@pytest.mark.usefixtures("db_fill")
 async def test_filter_mixin__param_wrong_type__error(params):
     response = await client.get("/", params=params)
 
@@ -100,6 +104,7 @@ async def test_filter_mixin__param_wrong_type__error(params):
         {"id[]": "abc"},
     ],
 )
+@pytest.mark.usefixtures("db_fill")
 async def test_filter_mixin__param_list_element_wrong_type__error(params):
     response = await client.get("/", params=params)
 

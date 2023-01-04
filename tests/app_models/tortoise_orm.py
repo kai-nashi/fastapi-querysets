@@ -32,6 +32,7 @@ class Task(Model):
     project = fields.ForeignKeyField("app_models.Project", related_name="tasks")
     workers_required_max: Optional[int] = fields.IntField(null=True)
     workers_required_min: int = fields.IntField(default=1)
+
     workers: QuerySet["Worker"] = fields.ManyToManyField("app_models.Worker", related_name="tasks")
 
 
