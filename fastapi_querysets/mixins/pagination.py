@@ -28,6 +28,7 @@ class RouterPagination:
 
 
 class PaginationMixin:
+    # todo: add per_page_min
     pagination_class: Type[RouterPagination]
 
     def __init__(self, *args, per_page_max: int = None, per_page: int = None, **kwargs):
@@ -47,4 +48,5 @@ class PaginationMixin:
         response.headers["x-per-page"] = str(pagination.limit)
         response.headers["x-total"] = str(total)
 
+        # todo: refactor to yield queryset and the adding pagination info
         return queryset.offset(cast(int, pagination.skip)).limit(pagination.limit)
