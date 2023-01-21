@@ -1,3 +1,5 @@
+from typing import List
+
 import pytest
 from fastapi import FastAPI
 from httpx import AsyncClient
@@ -15,12 +17,12 @@ class WorkersRouterQuerySet(RouterQuerySet):
 
 
 @app.get("/")
-async def app_test_list(queryset: QuerySet[Worker] = WorkersRouterQuerySet()) -> dict:
+async def app_test_list(queryset: QuerySet[Worker] = WorkersRouterQuerySet()) -> List[WorkerModelOut]:
     return await WorkerModelOut.from_queryset(queryset)
 
 
 @app.get("/{instance_pk}")
-async def app_test_retrieve(queryset: QuerySet[Worker] = WorkersRouterQuerySet().instance) -> dict:
+async def app_test_retrieve(queryset: QuerySet[Worker] = WorkersRouterQuerySet().instance) -> WorkerModelOut:
     return await WorkerModelOut.from_tortoise_orm(queryset)
 
 

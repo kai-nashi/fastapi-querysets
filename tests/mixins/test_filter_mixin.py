@@ -31,7 +31,7 @@ class WorkersRouterQuerySet(FilterMixin, RouterQuerySet):
 
 
 @app.get("/")
-async def app_test(queryset: QuerySet[Worker] = WorkersRouterQuerySet()) -> dict:
+async def app_test(queryset: QuerySet[Worker] = WorkersRouterQuerySet()) -> List[WorkerModelOut]:
     return await WorkerModelOut.from_queryset(queryset)
 
 

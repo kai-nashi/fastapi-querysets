@@ -1,4 +1,5 @@
 import math
+from typing import List
 
 import pytest
 from fastapi import FastAPI
@@ -28,7 +29,7 @@ class TasksRouterQuerySet(PaginationMixin, RouterQuerySet):
 
 
 @app.get("/")
-async def app_test(queryset: QuerySet[Worker] = TasksRouterQuerySet().paginated) -> dict:
+async def app_test(queryset: QuerySet[Worker] = TasksRouterQuerySet().paginated) -> List[WorkerModelOut]:
     return await WorkerModelOut.from_queryset(queryset)
 
 
