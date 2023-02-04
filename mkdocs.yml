@@ -31,3 +31,4 @@ nav:
       - 'Pagination': 'user_guide/pagination.md'
   - 'Release Notes': 'release_notes.md'
   - 'Roadmap': 'roadmap.md'
+docs_dir: 'docs'
