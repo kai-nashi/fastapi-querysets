@@ -31,8 +31,6 @@ pip install fastapi-querysets
 
 ---
 
----
-
 ## Tortoise model
 
 Let’s start with our model
