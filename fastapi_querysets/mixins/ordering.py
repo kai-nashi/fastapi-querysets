@@ -40,7 +40,7 @@ class OrderingMixin:
         elif isinstance(self.ordering_default, str):
             return queryset.order_by(self.ordering_default)
 
-        elif self.ordering_default:
+        elif isinstance(self.ordering_default, (list, tuple, set)):
             return queryset.order_by(*self.ordering_default)
 
         return queryset
