@@ -1,4 +1,6 @@
 # FastAPI Querysets
+![CDNJS](https://img.shields.io/badge/Python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-2334D058)
+![CDNJS](https://shields.io/badge/FastAPI-%3E=0.7.0-009485)
 
 ---
 **Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
