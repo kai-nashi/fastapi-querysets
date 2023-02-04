@@ -3,7 +3,7 @@
 ![CDNJS](https://shields.io/badge/FastAPI-%3E=0.7.0-009485)
 
 ---
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Documentation**: <a href="https://fastapi-querysets.readthedocs.io" target="_blank">https://fastapi-querysets.readthedocs.io</a>
 
 **Source Code**: <a href="https://github.com/Nikakto/fastapi-querysets" target="_blank">https://github.com/Nikakto/fastapi-querysets</a>
 

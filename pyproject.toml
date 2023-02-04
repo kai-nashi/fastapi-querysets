@@ -12,7 +12,7 @@ keywords = ["fastapi", "filters", "filtering", "pagination", "order", "ordering"
 python = ">=3.8,<4.0"
 fastapi = ">=0.70.0"
 tortoise-orm = ">=0.18.1"
-fastapi-depends-ext = "^0.2.1"
+fastapi-depends-ext = ">=0.2.2"
 
 [tool.poetry.dev-dependencies]
 httpx = "^0.23.1"
@@ -22,8 +22,14 @@ pytest-asyncio = "^0.20.3"
 pytest-mock = "^3.10.0"
 nest-asyncio = "^1.5.6"
 ipython = "^8.7.0"
-mkdocs-material = "^9.0.5"
 pytest-cov = "^4.0.0"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+Jinja2 = "3.0.*"
+mkdocs-material = "^9.0.5"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
