@@ -355,11 +355,11 @@ testing = ["Django (<3.1)", "attrs", "colorama", "docopt", "pytest (<7.0.0)"]
 
 [[package]]
 name = "jinja2"
-version = "3.1.2"
+version = "3.0.3"
 description = "A very fast and expressive template engine."
 category = "dev"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.6"
 
 [package.dependencies]
 MarkupSafe = ">=2.0"
@@ -908,7 +908,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "flake8 (<5)", "pytest-co
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4.0"
-content-hash = "08f59ecc48fd416eaf91bea1a546c80a5c0237b8a0b02987db69dd27d3ccacb4"
+content-hash = "ca113bb442c487cadac09129c5997ac65e58eac942391c68bf63c7620d671b9c"
 
 [metadata.files]
 aiosqlite = []
