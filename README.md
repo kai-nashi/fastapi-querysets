@@ -3,7 +3,7 @@
 ![CDNJS](https://shields.io/badge/FastAPI-%3E=0.7.0-009485)
 
 ---
-**Documentation**: <a href="https://fastapi.tiangolo.com" target="_blank">https://fastapi.tiangolo.com</a>
+**Documentation**: <a href="https://fastapi-querysets.readthedocs.io" target="_blank">https://fastapi-querysets.readthedocs.io</a>
 
 **Source Code**: <a href="https://github.com/Nikakto/fastapi-querysets" target="_blank">https://github.com/Nikakto/fastapi-querysets</a>
 
@@ -28,6 +28,8 @@ pip install fastapi-querysets
 ```
 
 # Quick tutorial
+
+---
 
 ---
 
@@ -257,4 +259,4 @@ Request URL looks like
 ```http://localhost:8000/tasks/10/```
 
 Endpoint method will get `Task` with `id == 10` as argument `task`.     
-If `Task` with `id == 10` does not exist then endpoint return `Response(404)` 
+If `Task` with `id == 10` does not exist then endpoint return `Response(404)`  
