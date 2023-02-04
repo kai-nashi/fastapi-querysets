@@ -12,7 +12,7 @@ keywords = ["fastapi", "filters", "filtering", "pagination", "order", "ordering"
 python = ">=3.8,<4.0"
 fastapi = ">=0.70.0"
 tortoise-orm = ">=0.18.1"
-fastapi-depends-ext = "^0.2.1"
+fastapi-depends-ext = ">=0.2.2"
 
 [tool.poetry.dev-dependencies]
 httpx = "^0.23.1"
