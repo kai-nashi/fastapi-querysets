@@ -1,3 +1,5 @@
+from typing import List
+
 import pytest
 from fastapi import FastAPI
 from httpx import AsyncClient
@@ -30,7 +32,7 @@ class TasksRouterQuerySet(OrderingMixin, RouterQuerySet):
 
 
 @app.get("/")
-async def app_test(queryset: QuerySet[Task] = TasksRouterQuerySet()) -> dict:
+async def app_test(queryset: QuerySet[Task] = TasksRouterQuerySet()) -> List[TaskModelOut]:
     return await TaskModelOut.from_queryset(queryset)
 
 

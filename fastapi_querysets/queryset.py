@@ -3,8 +3,8 @@ from fastapi import Depends
 from fastapi import Path
 from fastapi import params
 from fastapi.dependencies.utils import get_typed_signature
-from fastapi_depends_ext import DependsMethod
-from fastapi_depends_ext import DependsMethodBinder
+from fastapi_depends_ext import DependsAttr
+from fastapi_depends_ext import DependsAttrBinder
 from starlette import status
 from tortoise import Model
 from tortoise.queryset import QuerySet
@@ -12,7 +12,7 @@ from tortoise.queryset import QuerySet
 from fastapi_querysets.exceptions import create_validation_exception
 
 
-class RouterQuerySet(DependsMethodBinder, params.Depends):
+class RouterQuerySet(DependsAttrBinder, params.Depends):
     model: Model
     pk_model: str = "id"
 
@@ -26,13 +26,13 @@ class RouterQuerySet(DependsMethodBinder, params.Depends):
 
     async def get_request_queryset(
         self,
-        queryset: QuerySet = DependsMethod("get_queryset"),
+        queryset: QuerySet = DependsAttr("get_queryset"),
     ) -> QuerySet:
         return queryset
 
     async def get_request_instance(
         self,
-        queryset: QuerySet = DependsMethod("get_request_queryset"),
+        queryset: QuerySet = DependsAttr("get_request_queryset"),
         pk: Any = Path(None, alias="instance_pk"),
     ) -> Model:
         if instance := await queryset.get_or_none(**{self.pk_model: pk}):

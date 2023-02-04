@@ -1,0 +1,34 @@
+site_name: FastAPI Querysets
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: teal
+      accent: orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    - scheme: default
+      primary: teal
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+repo_name: Nikakto/fastapi-querysets
+repo_url: https://github.com/Nikakto/fastapi-querysets
+markdown_extensions:
+    - toc:
+        permalink: "¶"
+nav:
+  - 'Home': 'index.md'
+  - 'Example': 'example.md'
+  - 'User guide':
+      - 'RouterQuerySet': 'user_guide/router_query_set.md'
+      - 'Filtering': 'user_guide/filtering.md'
+      - 'Excluding': 'user_guide/excluding.md'
+      - 'Ordering': 'user_guide/ordering.md'
+      - 'Pagination': 'user_guide/pagination.md'
+  - 'Release Notes': 'release_notes.md'
+  - 'Roadmap': 'roadmap.md'
+docs_dir: 'docs'

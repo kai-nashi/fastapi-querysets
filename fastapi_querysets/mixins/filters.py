@@ -8,7 +8,7 @@ from typing import Optional
 from typing import Protocol
 from typing import Tuple
 
-from fastapi_depends_ext import DependsMethod
+from fastapi_depends_ext import DependsAttr
 from pydantic.fields import FieldInfo
 from starlette.requests import Request
 from tortoise.queryset import QuerySet
@@ -48,8 +48,8 @@ class FilterNegationMixin(BaseFilterMixin):
     def get_request_queryset(
         self,
         request: Request,
-        exclude: DataclassProtocol = DependsMethod("exclude_class"),
-        queryset: QuerySet = DependsMethod("get_request_queryset", from_super=True),
+        exclude: DataclassProtocol = DependsAttr("exclude_class"),
+        queryset: QuerySet = DependsAttr("get_request_queryset", from_super=True),
     ) -> QuerySet:
         if model_exclude := self._get_model_filters(request, exclude):
             queryset = queryset.exclude(**model_exclude)
@@ -62,8 +62,8 @@ class FilterMixin(BaseFilterMixin):
     def get_request_queryset(
         self,
         request: Request,
-        filters: DataclassProtocol = DependsMethod("filter_class"),
-        queryset: QuerySet = DependsMethod("get_request_queryset", from_super=True),
+        filters: DataclassProtocol = DependsAttr("filter_class"),
+        queryset: QuerySet = DependsAttr("get_request_queryset", from_super=True),
     ) -> QuerySet:
 
         if model_filters := self._get_model_filters(request, filters):

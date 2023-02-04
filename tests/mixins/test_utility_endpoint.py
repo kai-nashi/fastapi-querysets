@@ -1,5 +1,6 @@
 import dataclasses
 import datetime
+from typing import List
 from typing import Optional
 
 import pytest
@@ -53,7 +54,7 @@ app = FastAPI()
 
 
 @app.get("/")
-async def app_test(queryset: QuerySet[Task] = TasksRouterQuerySet().paginated) -> dict:
+async def app_test(queryset: QuerySet[Task] = TasksRouterQuerySet().paginated) -> List[TaskModelOut]:
     return await TaskModelOut.from_queryset(queryset)
 
 
