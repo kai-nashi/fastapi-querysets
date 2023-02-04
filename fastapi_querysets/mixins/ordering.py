@@ -4,7 +4,7 @@ from typing import Sequence
 from typing import Union
 
 from fastapi import Query
-from fastapi_depends_ext import DependsMethod
+from fastapi_depends_ext import DependsAttr
 from starlette import status
 from tortoise.queryset import QuerySet
 
@@ -21,7 +21,7 @@ class OrderingMixin:
     def get_request_queryset(
         self,
         ordering: Optional[QUERY_ORDERING] = Query(None, alias="ordering[]"),
-        queryset: QuerySet = DependsMethod("get_request_queryset", from_super=True),
+        queryset: QuerySet = DependsAttr("get_request_queryset", from_super=True),
     ) -> QuerySet:
         if ordering:
             # todo: allow to patch method typing to remove custom error

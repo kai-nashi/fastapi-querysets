@@ -5,7 +5,7 @@ from typing import cast
 
 from fastapi import Depends
 from fastapi import Query
-from fastapi_depends_ext import DependsMethod
+from fastapi_depends_ext import DependsAttr
 from starlette.responses import Response
 from tortoise.queryset import QuerySet
 
@@ -39,8 +39,8 @@ class PaginationMixin:
     async def get_request_queryset_paginated(
         self,
         response: Response,
-        queryset: QuerySet = DependsMethod("get_request_queryset"),
-        pagination: Pagination = DependsMethod("_pagination"),
+        queryset: QuerySet = DependsAttr("get_request_queryset"),
+        pagination: Pagination = DependsAttr("_pagination"),
     ) -> QuerySet:
         total = await queryset.count()
         response.headers["x-page"] = str(math.ceil(pagination.skip / pagination.limit) + 1)

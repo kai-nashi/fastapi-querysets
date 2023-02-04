@@ -130,6 +130,20 @@ optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 
 [[package]]
+name = "coverage"
+version = "7.1.0"
+description = "Code coverage measurement for Python"
+category = "dev"
+optional = false
+python-versions = ">=3.7"
+
+[package.dependencies]
+tomli = {version = "*", optional = true, markers = "python_full_version <= \"3.11.0a6\" and extra == \"toml\""}
+
+[package.extras]
+toml = ["tomli"]
+
+[[package]]
 name = "decorator"
 version = "5.1.1"
 description = "Decorators for Humans"
@@ -179,21 +193,14 @@ test = ["anyio[trio] (>=3.2.1,<4.0.0)", "black (==22.10.0)", "coverage[toml] (>=
 
 [[package]]
 name = "fastapi-depends-ext"
-version = "0.1.4"
+version = "0.2.1"
 description = "Extends FastAPI Depends classes to simple way of modifying them after creating"
 category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
-develop = false
 
 [package.dependencies]
 fastapi = ">=0.70.0,<1.0.0"
-
-[package.source]
-type = "git"
-url = "https://github.com/Nikakto/fastapi-depends-ext"
-reference = "main"
-resolved_reference = "ab02cc52847ce97a97a8edb9ec2deeed729ce392"
 
 [[package]]
 name = "ghp-import"
@@ -651,6 +658,21 @@ docs = ["sphinx (>=5.3)", "sphinx-rtd-theme (>=1.0)"]
 testing = ["coverage (>=6.2)", "hypothesis (>=5.7.1)", "flaky (>=3.5.0)", "mypy (>=0.931)", "pytest-trio (>=0.7.0)"]
 
 [[package]]
+name = "pytest-cov"
+version = "4.0.0"
+description = "Pytest plugin for measuring coverage."
+category = "dev"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+coverage = {version = ">=5.2.1", extras = ["toml"]}
+pytest = ">=4.6"
+
+[package.extras]
+testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
+
+[[package]]
 name = "pytest-mock"
 version = "3.10.0"
 description = "Thin-wrapper around the mock package for easier use with pytest"
@@ -886,7 +908,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "flake8 (<5)", "pytest-co
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<4.0"
-content-hash = "fcf67e0cfda8f2d0abfe7eb7ad89e208a34439d5bee47417cd70d9eaebf5d8a5"
+content-hash = "08f59ecc48fd416eaf91bea1a546c80a5c0237b8a0b02987db69dd27d3ccacb4"
 
 [metadata.files]
 aiosqlite = []
@@ -906,6 +928,7 @@ click = [
     {file = "click-8.1.3.tar.gz", hash = "sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e"},
 ]
 colorama = []
+coverage = []
 decorator = []
 exceptiongroup = []
 executing = []
@@ -959,6 +982,7 @@ pymdown-extensions = []
 pypika-tortoise = []
 pytest = []
 pytest-asyncio = []
+pytest-cov = []
 pytest-mock = []
 python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},

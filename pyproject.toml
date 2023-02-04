@@ -3,12 +3,16 @@ name = "fastapi-querysets"
 version = "0.1.1"
 description = ""
 authors = ["Nikakto <black-z@bk.ru>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/Nikakto/fastapi-querysets"
+keywords = ["fastapi", "filters", "filtering", "pagination", "order", "ordering", "queryset", "Tortoise", "orm", "database", "db"]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
 fastapi = ">=0.70.0"
-fastapi-depends-ext = { git = "https://github.com/Nikakto/fastapi-depends-ext", branch = "main" }
 tortoise-orm = ">=0.18.1"
+fastapi-depends-ext = "^0.2.1"
 
 [tool.poetry.dev-dependencies]
 httpx = "^0.23.1"
@@ -19,6 +23,7 @@ pytest-mock = "^3.10.0"
 nest-asyncio = "^1.5.6"
 ipython = "^8.7.0"
 mkdocs-material = "^9.0.5"
+pytest-cov = "^4.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
