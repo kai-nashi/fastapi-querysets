@@ -1,6 +1,6 @@
 # FastAPI Querysets
 ![CDNJS](https://img.shields.io/badge/Python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-2334D058)
-![CDNJS](https://shields.io/badge/FastAPI-%3E=0.7.0-009485)
+![CDNJS](https://shields.io/badge/FastAPI-%3E=0.78-009485)
 
 ---
 **Documentation**: <a href="https://fastapi-querysets.readthedocs.io" target="_blank">https://fastapi-querysets.readthedocs.io</a>
@@ -18,7 +18,7 @@ While you are developing FastAPI applications you are using databases with ORM. 
 
 ## Requirements
 - python >=3.8,<4.0
-- fastAPI >= 0.7.0
+- fastAPI >= 0.78
 - tortoise-orm >= 0.18.1
 
 ## Installation
