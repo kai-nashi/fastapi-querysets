@@ -33,7 +33,7 @@ class RouterQuerySet(DependsAttrBinder, params.Depends):
     async def get_request_instance(
         self,
         queryset: QuerySet = DependsAttr("get_request_queryset"),
-        pk: Any = Path(None, alias="instance_pk"),
+        pk: Any = Path(alias="instance_pk"),
     ) -> Model:
         if instance := await queryset.get_or_none(**{self.pk_model: pk}):
             return instance
